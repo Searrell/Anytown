@@ -1,46 +1,56 @@
+import java.util.Scanner;
+import java.io.File;
 public class AnytownTest {
-    public static void main(String[] args) {
-        Building b1 = new Building();
-        Building b2 = new Building("32 castle street", "Jim Jones");
-        Building b3 = new Building("33 castle street", "Turkish barbers");
+    public static void main(String[] args) throws Exception {
 
-        b1.setAddress("34 castle street");
-        b1.setOwner("mitch connor");
+        Building[] buildings = new Building[11];
+        File fileIn = new File("src/building.txt");
+        Scanner fileInput = new Scanner(fileIn);
+        String buildingData;
+        int marker1 = 2, marker2, marker3, marker4, marker5;
+        String address, owner;
+        int numberofBedrooms, numberofEmployees, avgTurnover;
+        boolean hasGarage;
+        int thisBuilding = 0;
 
-        System.out.println(b1);
-        System.out.println(b2);
-        System.out.println(b3);
+        while (fileInput.hasNextLine()) {
+            buildingData = fileInput.nextLine();
+            marker2 = buildingData.indexOf("|", marker1);
+            marker3 = buildingData.indexOf("|", marker2 + 1);
+            marker4 = buildingData.indexOf("|", marker3 + 1);
+            marker5 = buildingData.indexOf("|", marker4 + 1);
 
-        System.out.println(b1.getAddress());
-        System.out.println(b1.getOwner());
+            address = buildingData.substring(marker1, marker2);
+            owner = buildingData.substring(marker2+ 1, marker3);
 
-        Shop s1 = new Shop();
-        Shop s2 = new Shop("38 castle street", "Fred Johns",
-                3, 420 );
-        System.out.println(s2);
+            switch(buildingData.substring(0, 1)){
+                case "B" :
+                    // create new building
+                    System.out.println("Building");
+                    buildings[thisBuilding] = new Building(address, owner);
+                    thisBuilding++;
+                    break;
+                case "H" :
+                    // create new house
+                    System.out.println("House");
+                    numberofBedrooms = Integer.parseInt(buildingData.substring(marker3 + 1, marker4));
+                    hasGarage = Boolean.parseBoolean(buildingData.substring(marker4 + 1, marker5));
+                    buildings[thisBuilding] = new House(address, owner, numberofBedrooms, hasGarage);
+                    thisBuilding++;
+                    break;
+                case "S" :
+                    // create new shop
+                    System.out.println("Shop");
+                    numberofEmployees =Integer.parseInt(buildingData.substring(marker3 + 1, marker4));
+                    avgTurnover = Integer.parseInt(buildingData.substring(marker4 + 1, marker5));
+                    buildings[thisBuilding] = new Shop(address, owner, numberofEmployees, avgTurnover);
+                    thisBuilding++;
+                    break;
+                }
 
-        House h1 = new House();
-        House h2 = new House("65 castle street", "David smith", 3, false);
-
-        System.out.println(h2);
-
-        s1.setAddress(" 1 low street");
-        s1.setOwner("Homer Simpson");
-        s1.setNumEmployees(5);
-        s1.setAverageTurnover(230);
-        System.out.println(s1);
-
-        h1.setAddress("2 low street");
-        h1.setOwner("Mick scott");
-        h1.setHasGarage(true);
-        h1.setNumBedrooms(5);
-
-        System.out.println(h1);
-
-        System.out.println(h1.getNumBedrooms());
-        System.out.println(h1.gethasGarage());
-        System.out.println(s1.getNumEmployees());
-        System.out.println(s1.getAverageTurnover());
-
+            }
+        for (Building building : buildings){
+            System.out.println(building);
+        }
     }
 }
