@@ -24,6 +24,10 @@ public class Building {
         this.owner = owner;
     }
     public String toString() {
-        return this.address + "  occupied by " + this.owner;
+        return this.address + " occupied by " + this.owner;
+    }
+
+    public boolean equals(Building anotherBuilding){
+        return this.getAddress().equals(anotherBuilding.getAddress());
     }
 }

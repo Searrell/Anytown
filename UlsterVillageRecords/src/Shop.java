@@ -30,7 +30,7 @@ public class Shop extends Building{
 
     @Override
     public String toString() {
-        return super.toString() + " and this a shop with " +
+        return super.toString() + " and is a shop with " +
                 this.numEmployees + " employees";
     }
 }

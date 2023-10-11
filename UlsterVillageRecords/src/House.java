@@ -30,7 +30,7 @@ public class House extends Building {
 
     @Override
     public String toString() {
-        return super.toString() + " an is a house with " +
+        return super.toString() + " and is a house with " +
                 this.numBedrooms + " bedrooms. ";
     }
 }
