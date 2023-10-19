@@ -5,6 +5,7 @@ public class ArrayBag implements BagInterface {
     private static final int DEFAULT_CAPACITY = 25;
 
     public ArrayBag() {
+
         this(ArrayBag.DEFAULT_CAPACITY);
     }
 

@@ -7,7 +7,7 @@ public class BagOfBuildingsTest {
 
     public static void main(String[] args) {
 
-        ArrayBag buildings = new ArrayBag();
+        ArrayListBag buildings = new ArrayListBag();
 
         System.out.println("--------------------------");
         System.out.println("BAG TEST:");
@@ -85,7 +85,7 @@ public class BagOfBuildingsTest {
         System.out.println("-----------------------------------------------");
     }
 
-    public static void bagStatusReport(ArrayBag myBag) {
+    public static void bagStatusReport(ArrayListBag myBag) {
         System.out.println("Bag contents: " + myBag);
         System.out.println("Size: " + myBag.getCurrentSize());
         System.out.println("Is empty: " + myBag.isEmpty());
